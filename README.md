@@ -1,2 +1,3 @@
-# pokedex
-Created with CodeSandbox
+#### project
+
+## Gatsby TypeScript
