@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ListContent } from "../nav";
+import Container from "../container";
 
 export const HeroTitle = styled.h1`
   text-align: center;
@@ -33,12 +34,34 @@ export const ListDesc = styled.ul`
 `;
 
 export const Header = styled.header`
+  margin-top: 40px;
+`;
+
+const FooterStyled = styled.div`
   padding: 20px 0;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h4 {
+    font-size: 22px;
+    font-weight: bold;
+    span {
+      color: #ef5350;
+    }
+  }
 `;
 
 const Footer = () => (
   <Header>
-    <ListContent />
+    <Container type="sm">
+      <FooterStyled>
+        <h4>
+          Poke<span>dex</span>
+        </h4>
+        <ListContent />
+      </FooterStyled>
+    </Container>
   </Header>
 );
 
