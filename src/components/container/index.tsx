@@ -45,4 +45,6 @@ const Container = styled.div(
   }
 );
 
+Container.defaultProps = defaultProps;
+
 export default Container;

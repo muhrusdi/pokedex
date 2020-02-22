@@ -1,6 +1,8 @@
 import React from "react";
 import Container from "components/container";
 import SEO from "components/seo";
+import Nav from "components/nav";
+import Footer from "components/footer";
 import { CSSProp } from "styled-components";
 
 declare module "react" {
@@ -17,7 +19,11 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <SEO />
-      <Container>{children}</Container>
+      <div>
+        <Nav />
+        {children}
+        <Footer />
+      </div>
     </>
   );
 };

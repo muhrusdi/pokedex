@@ -14,6 +14,7 @@ export const PokemonItemStyled = styled.div`
   background: #fff;
   border-radius: 18px;
   margin-top: 20px;
+  cursor: pointer;
   box-shadow: 2px 6px 16px rgba(135, 135, 135, 0.15),
     -4px -2px 16px rgba(255, 255, 255, 0.65);
 `;
@@ -33,7 +34,7 @@ export const ImageStyled = styled.img`
 `;
 
 export const Type = styled.span`
-  background: red;
+  background: #${({ color }) => color};
   padding: 4px 8px;
   border-radius: 20px;
   color: #fff;

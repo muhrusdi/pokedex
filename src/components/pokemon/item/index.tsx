@@ -8,12 +8,17 @@ import {
   Title,
   Footer
 } from "./styled";
+import { randomColor } from "utils";
 
-const PokemonItem: React.FC = () => {
+type Props = {
+  onClick: { target: HTMLElement };
+};
+
+const PokemonItem: React.FC<Props> = ({ onClick }) => {
   return (
-    <PokemonItemStyled>
+    <PokemonItemStyled onClick={onClick}>
       <Row>
-        <Col sm={6}>
+        <Col xs={6} style={{ minWidth: 100 }}>
           <div>
             <ImageStyled
               src="https://img.pokemondb.net/artwork/squirtle.jpg"
@@ -21,7 +26,7 @@ const PokemonItem: React.FC = () => {
             />
           </div>
         </Col>
-        <Col sm={18}>
+        <Col xs={18}>
           <div>
             <Title>
               <h2>Pokemon</h2>
@@ -29,13 +34,13 @@ const PokemonItem: React.FC = () => {
             </Title>
             <List>
               <li>
-                <Type>Glass</Type>
+                <Type color={() => randomColor()}>Glass</Type>
               </li>
               <li>
-                <Type>Glass</Type>
+                <Type color={() => randomColor()}>Glass</Type>
               </li>
               <li>
-                <Type>Glass</Type>
+                <Type color={() => randomColor()}>Glass</Type>
               </li>
             </List>
             <Footer>
