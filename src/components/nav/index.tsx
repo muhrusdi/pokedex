@@ -52,7 +52,7 @@ export const ListContent = () => {
           <span>My Bookmark</span>
           <span>
             <Badge
-              count={Object.keys(bookmarks).length}
+              count={Object.keys(bookmarks || {}).length}
               style={{ backgroundColor: "#52c41a", marginLeft: 8 }}
             />
           </span>
