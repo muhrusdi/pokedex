@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { Badge } from "antd";
+import { StateContext } from "contexts/state-context";
 import { Link } from "gatsby";
 
 export const HeroTitle = styled.h1`
@@ -36,25 +38,34 @@ export const Header = styled.header`
   padding: 20px 0;
 `;
 
-export const ListContent = () => (
-  <ListDesc>
-    <li>
-      <Link to="/">
-        <span>Home</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/bookmark">
-        <span>My Bookmark</span>
-      </Link>
-    </li>
-    <li>
-      <Link to="/about">
-        <span>About</span>
-      </Link>
-    </li>
-  </ListDesc>
-);
+export const ListContent = () => {
+  const { bookmarks } = useContext(StateContext);
+  return (
+    <ListDesc>
+      <li>
+        <Link to="/">
+          <span>Home</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/bookmark">
+          <span>My Bookmark</span>
+          <span>
+            <Badge
+              count={Object.keys(bookmarks).length}
+              style={{ backgroundColor: "#52c41a", marginLeft: 8 }}
+            />
+          </span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/about">
+          <span>About</span>
+        </Link>
+      </li>
+    </ListDesc>
+  );
+};
 
 const Nav = () => (
   <Header>
