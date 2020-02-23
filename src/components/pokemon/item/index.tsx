@@ -33,7 +33,10 @@ const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
               ))}
             </List>
             <Footer>
-              <ButtonBookmark toggle={bookmarks[item.id]} onClick={onClick} />
+              <ButtonBookmark
+                toggle={bookmarks && bookmarks[item.id]}
+                onClick={onClick}
+              />
             </Footer>
           </div>
         </Col>
