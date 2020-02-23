@@ -7,7 +7,8 @@ import { StateContext } from "contexts/state-context";
 import SimpleDesc from "components/simple-desc";
 import Layout from "../layouts";
 import { useStaticQuery, graphql } from "gatsby";
-import { ListStyled, ModalStyled } from "../home/styled";
+import { ListStyled } from "../home/styled";
+import { ModalStyled } from "../../components/simple-desc/styled";
 
 type Props = {
   pageContext: object;

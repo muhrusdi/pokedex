@@ -1,7 +1,14 @@
 import React from "react";
+import Layout from "../layouts";
 
 const About = () => {
-  return <div>About</div>;
+  return (
+    <Layout>
+      <div>
+        <h3>About</h3>
+      </div>
+    </Layout>
+  );
 };
 
 export default About;
