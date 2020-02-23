@@ -4,7 +4,7 @@ import Img from "gatsby-image";
 import { StateContext } from "contexts/state-context";
 import { PokemonItemStyled, List, Type, Title, Footer } from "./styled";
 import ButtonBookmark from "../../bookmark";
-import { randomColor } from "utils";
+import Types from "../../types";
 
 type Props = {
   onClick: { target: HTMLElement };
@@ -26,11 +26,7 @@ const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
               <span>#{item.number}</span>
             </Title>
             <List>
-              {item.types.map(type => (
-                <li>
-                  <Type color={randomColor}>{type}</Type>
-                </li>
-              ))}
+              <Types data={item.types} />
             </List>
             <Footer>
               <ButtonBookmark

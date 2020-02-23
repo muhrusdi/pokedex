@@ -13,7 +13,7 @@ export const List = styled.ul`
 `;
 
 export const Type = styled.span`
-  background: #${({ color }) => color};
+  background: ${({ color }) => color};
   padding: 4px 8px;
   border-radius: 20px;
   color: #fff;
@@ -34,7 +34,7 @@ interface Props {
 const Types: React.FC<Props> = ({ data }) => (
   <List>
     {data.length &&
-      data.map(item => (
+      data.map((item, i) => (
         <li>
           <Type color={randomColor}>{item}</Type>
         </li>
