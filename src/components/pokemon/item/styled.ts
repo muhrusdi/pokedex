@@ -44,3 +44,11 @@ export const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
+
+export const ButtonBookmarkStyled = styled.button`
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background: none;
+`;

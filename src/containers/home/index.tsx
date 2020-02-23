@@ -1,12 +1,10 @@
 /* eslint-disable react/jsx-no-target-blank */
-import React, { useState } from "react";
-import { Row, Col, Modal } from "antd";
-import { Link } from "gatsby";
+import React, { useState, useContext } from "react";
 import Container from "components/container";
-import Layout from "../layouts";
 import PokemonItem from "components/pokemon/item";
-import Types from "components/types";
+import { StateContext } from "contexts/state-context";
 import SimpleDesc from "components/simple-desc";
+import Layout from "../layouts";
 import { useStaticQuery, graphql } from "gatsby";
 import { ListStyled, ModalStyled } from "./styled";
 
@@ -17,6 +15,7 @@ type Props = {
 const Home: React.FC<Props> = props => {
   const [visible, setVisible] = useState(false);
   const [currentPokemon, setCurrentPokemon] = useState(null);
+  const { bookmarks, handleAdd, handleDelete } = useContext(StateContext);
 
   const data = useStaticQuery(graphql`
     query Pokemon {
@@ -50,16 +49,24 @@ const Home: React.FC<Props> = props => {
     }
   `);
 
-  console.log(data);
-
-  const handleClick = index => {
-    setVisible(true);
-    setCurrentPokemon(index);
-    window.history.pushState(
-      { page: "another" },
-      "another page",
-      `/detail/${data.pokemon.pokemons[index].name.toLowerCase()}`
-    );
+  const handleClick = (toggle, index, item, e) => {
+    e.stopPropagation();
+    if (e.currentTarget.localName === "button") {
+      if (!toggle) {
+        handleAdd({ [item.id]: item });
+        console.log(bookmarks);
+      } else {
+        handleDelete(item.id);
+      }
+    } else {
+      setVisible(true);
+      setCurrentPokemon(index);
+      window.history.pushState(
+        { page: "another" },
+        "another page",
+        `/detail/${data.pokemon.pokemons[index].name.toLowerCase()}`
+      );
+    }
   };
 
   const handleCancel = () => {
@@ -74,7 +81,10 @@ const Home: React.FC<Props> = props => {
           <ListStyled>
             {data.pokemon.pokemons.map((item, i) => (
               <li>
-                <PokemonItem item={item} onClick={() => handleClick(i)} />
+                <PokemonItem
+                  item={item}
+                  onClick={(toggle, e) => handleClick(toggle, i, item, e)}
+                />
               </li>
             ))}
           </ListStyled>

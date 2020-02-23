@@ -94,6 +94,7 @@ export const ImageStyled = styled.img`
 export const SeeDetail = styled.button`
   padding: 0 20px;
   height: 42px;
+  outline: none;
   border-radius: 24px;
   border: 1px solid #fff;
   cursor: pointer;

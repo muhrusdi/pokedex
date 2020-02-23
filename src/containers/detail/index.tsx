@@ -135,6 +135,7 @@ export const pageQuery = graphql`
   query DetailQuery($id: String) {
     pokemon {
       pokemon(id: $id) {
+        id
         name
         types
         number

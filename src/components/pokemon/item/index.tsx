@@ -1,14 +1,9 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Row, Col } from "antd";
 import Img from "gatsby-image";
-import {
-  PokemonItemStyled,
-  ImageStyled,
-  List,
-  Type,
-  Title,
-  Footer
-} from "./styled";
+import { StateContext } from "contexts/state-context";
+import { PokemonItemStyled, List, Type, Title, Footer } from "./styled";
+import ButtonBookmark from "../../bookmark";
 import { randomColor } from "utils";
 
 type Props = {
@@ -17,8 +12,9 @@ type Props = {
 };
 
 const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
+  const { bookmarks } = useContext(StateContext);
   return (
-    <PokemonItemStyled onClick={onClick}>
+    <PokemonItemStyled onClick={e => onClick(null, e)}>
       <Row gutter={10}>
         <Col sm={8} style={{ width: 160, textAlign: "center" }}>
           <Img fixed={item.imageFile.childImageSharp.fixed} alt={item.name} />
@@ -37,19 +33,7 @@ const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
               ))}
             </List>
             <Footer>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#9b9696"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="bevel"
-              >
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-              </svg>
+              <ButtonBookmark toggle={bookmarks[item.id]} onClick={onClick} />
             </Footer>
           </div>
         </Col>
