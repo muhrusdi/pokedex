@@ -7,17 +7,8 @@ import Layout from "../layouts";
 import PokemonItem from "components/pokemon/item";
 import Types from "components/types";
 import SimpleDesc from "components/simple-desc";
-import {
-  ListStyled,
-  ModalStyled,
-  ModalContent,
-  ModalContentDesc,
-  ButtonClose,
-  Flex,
-  ImageStyled,
-  SeeDetail,
-  ModalListDesc
-} from "./styled";
+import { useStaticQuery, graphql } from "gatsby";
+import { ListStyled, ModalStyled } from "./styled";
 
 type Props = {
   pageContext: object;
@@ -25,9 +16,45 @@ type Props = {
 
 const Home: React.FC<Props> = props => {
   const [visible, setVisible] = useState(false);
-  console.log(props);
-  const handleClick = () => {
+  const [currentPokemon, setCurrentPokemon] = useState(null);
+
+  const data = useStaticQuery(graphql`
+    query Pokemon {
+      pokemon {
+        pokemons(first: 20) {
+          id
+          name
+          types
+          classification
+          height {
+            minimum
+            maximum
+          }
+          weight {
+            minimum
+            maximum
+          }
+          number
+          imageFile {
+            childImageSharp {
+              fixed(height: 100) {
+                ...GatsbyImageSharpFixed
+              }
+              fluid(maxWidth: 400) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  console.log(data);
+
+  const handleClick = index => {
     setVisible(true);
+    setCurrentPokemon(index);
     window.history.pushState(
       { page: "another" },
       "another page",
@@ -45,20 +72,16 @@ const Home: React.FC<Props> = props => {
       <Container type="sm">
         <div>
           <ListStyled>
-            <li>
-              <PokemonItem onClick={handleClick} />
-            </li>
-            <li>
-              <PokemonItem onClick={handleClick} />
-            </li>
-            <li>
-              <PokemonItem onClick={handleClick} />
-            </li>
+            {data.pokemon.pokemons.map((item, i) => (
+              <li>
+                <PokemonItem item={item} onClick={() => handleClick(i)} />
+              </li>
+            ))}
           </ListStyled>
         </div>
       </Container>
       <ModalStyled footer={null} onCancel={handleCancel} visible={visible}>
-        <SimpleDesc />
+        <SimpleDesc item={data.pokemon.pokemons[currentPokemon]} />
       </ModalStyled>
     </Layout>
   );

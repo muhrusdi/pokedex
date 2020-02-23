@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
+import Img from "gatsby-image";
 import {
   PokemonItemStyled,
   ImageStyled,
@@ -12,36 +13,28 @@ import { randomColor } from "utils";
 
 type Props = {
   onClick: { target: HTMLElement };
+  item: object;
 };
 
-const PokemonItem: React.FC<Props> = ({ onClick }) => {
+const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
   return (
     <PokemonItemStyled onClick={onClick}>
       <Row>
-        <Col xs={6} style={{ minWidth: 100 }}>
-          <div>
-            <ImageStyled
-              src="https://img.pokemondb.net/artwork/squirtle.jpg"
-              alt=""
-            />
-          </div>
+        <Col sm={8} style={{ width: 160, textAlign: "center" }}>
+          <Img fixed={item.imageFile.childImageSharp.fixed} alt={item.name} />
         </Col>
-        <Col xs={18}>
+        <Col sm={16}>
           <div>
             <Title>
-              <h2>Pokemon</h2>
-              <span>#002</span>
+              <h2>{item.name}</h2>
+              <span>#{item.number}</span>
             </Title>
             <List>
-              <li>
-                <Type color={() => randomColor()}>Glass</Type>
-              </li>
-              <li>
-                <Type color={() => randomColor()}>Glass</Type>
-              </li>
-              <li>
-                <Type color={() => randomColor()}>Glass</Type>
-              </li>
+              {item.types.map(type => (
+                <li>
+                  <Type color={randomColor}>{type}</Type>
+                </li>
+              ))}
             </List>
             <Footer>
               <svg

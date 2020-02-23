@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 import { Link } from "gatsby";
+import Img from "gatsby-image";
 import Types from "../types";
 import {
   ListStyled,
@@ -16,18 +17,17 @@ import {
 
 type Props = {
   type: string;
+  item: object;
 };
 
-export const SimpleDesc: React.FC<Props> = ({ type }) => (
+export const SimpleDesc: React.FC<Props> = ({ type, item }) => (
   <div>
     <ModalContent>
       <Flex>
         <div>
-          <h2>Pokemon</h2>
+          <h2>{item.name}</h2>
           <div>
-            <Types
-              data={[{ name: "Pokemon" }, { name: "Seed" }, { name: "Seed" }]}
-            />
+            <Types data={item.types} />
           </div>
         </div>
         <Flex style={{ alignItems: "center" }}>
@@ -47,7 +47,7 @@ export const SimpleDesc: React.FC<Props> = ({ type }) => (
             </svg>
           </div>
           {type !== "detail" && (
-            <Link to="/detail">
+            <Link to={`/detail/${item.name.toLowerCase()}`}>
               <SeeDetail>See Details</SeeDetail>
             </Link>
           )}
@@ -55,7 +55,7 @@ export const SimpleDesc: React.FC<Props> = ({ type }) => (
       </Flex>
       <ModalContentDesc>
         <Row gutter={40} align="middle">
-          <Col sm={14}>
+          <Col xs={24} sm={14}>
             <div>
               <ModalListDesc>
                 <li>
@@ -64,38 +64,48 @@ export const SimpleDesc: React.FC<Props> = ({ type }) => (
                       <span>Species</span>
                     </Col>
                     <Col sm={12}>
-                      <span>Seed Pokémon</span>
+                      <span>{item.classification}</span>
                     </Col>
                   </Row>
                 </li>
                 <li>
                   <Row>
                     <Col sm={12}>
-                      <span>Species</span>
+                      <span>Height</span>
                     </Col>
                     <Col sm={12}>
-                      <span>Seed Pokémon</span>
+                      <span>
+                        {item.height.minimum} - {item.height.maximum}
+                      </span>
                     </Col>
                   </Row>
                 </li>
                 <li>
                   <Row>
                     <Col sm={12}>
-                      <span>Species</span>
+                      <span>Weight</span>
                     </Col>
                     <Col sm={12}>
-                      <span>Seed Pokémon</span>
+                      <span>
+                        <span>
+                          {item.weight.minimum} - {item.weight.maximum}
+                        </span>
+                      </span>
                     </Col>
                   </Row>
                 </li>
               </ModalListDesc>
             </div>
           </Col>
-          <Col sm={10}>
+          <Col xs={24} sm={10}>
             <div>
-              <ImageStyled
+              {/* <ImageStyled
                 src="https://img.pokemondb.net/artwork/squirtle.jpg"
                 alt=""
+              /> */}
+              <Img
+                fluid={item.imageFile.childImageSharp.fluid}
+                alt={item.name}
               />
             </div>
           </Col>

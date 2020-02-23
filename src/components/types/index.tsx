@@ -36,7 +36,7 @@ const Types: React.FC<Props> = ({ data }) => (
     {data.length &&
       data.map(item => (
         <li>
-          <Type color={randomColor}>{item.name}</Type>
+          <Type color={randomColor}>{item}</Type>
         </li>
       ))}
   </List>
