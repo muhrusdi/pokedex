@@ -48,7 +48,7 @@ const Bookmark: React.FC<Props> = props => {
       <Container type="sm">
         <div>
           <ListStyled>
-            {Object.keys(bookmarks).map((key, i) => (
+            {Object.keys(bookmarks || {}).map((key, i) => (
               <li>
                 <PokemonItem
                   item={bookmarks[key]}
