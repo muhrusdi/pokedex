@@ -59,7 +59,7 @@ const Bookmark: React.FC<Props> = props => {
               </li>
             ))}
           </ListStyled>
-          {!Object.keys(bookmarks).length && (
+          {!Object.keys(bookmarks || {}).length && (
             <div>
               <Empty />
             </div>
