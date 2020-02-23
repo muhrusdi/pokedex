@@ -67,7 +67,7 @@ const Bookmark: React.FC<Props> = props => {
         </div>
       </Container>
       <ModalStyled footer={null} onCancel={handleCancel} visible={visible}>
-        <SimpleDesc item={bookmarks[currentPokemon]} />
+        <SimpleDesc item={bookmarks && bookmarks[currentPokemon]} />
       </ModalStyled>
     </Layout>
   );
