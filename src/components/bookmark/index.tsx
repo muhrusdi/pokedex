@@ -28,7 +28,7 @@ const ButtonBookmark = ({ toggle = false, onClick }) => {
         width="24"
         height="24"
         viewBox="0 0 24 24"
-        fill={dataToggle ? "#03970c" : "#fff"}
+        fill={dataToggle ? "#ffc107" : "#fff"}
         stroke={dataToggle ? "transparent" : "#03970c"}
         strokeWidth="1"
         strokeLinecap="round"

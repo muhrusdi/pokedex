@@ -4,9 +4,10 @@ import Container from "components/container";
 import PokemonItem from "components/pokemon/item";
 import { StateContext } from "contexts/state-context";
 import SimpleDesc from "components/simple-desc";
+import { ModalStyled } from "components/simple-desc/styled";
 import Layout from "../layouts";
 import { useStaticQuery, graphql } from "gatsby";
-import { ListStyled, ModalStyled } from "./styled";
+import { ListStyled } from "./styled";
 
 type Props = {
   pageContext: object;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Hero = styled.div`
-  background: #ef5350;
+  background: #03970c;
   padding: 24px 20px;
   border-radius: 20px;
 `;
