@@ -29,11 +29,11 @@ const Bookmark: React.FC<Props> = props => {
       }
     } else {
       setVisible(true);
-      setCurrentPokemon(index.id);
+      setCurrentPokemon(item.id);
       window.history.pushState(
         { page: "another" },
         "another page",
-        `/detail/${index.name.toLowerCase()}`
+        `/detail/${item.name.toLowerCase()}`
       );
     }
   };
