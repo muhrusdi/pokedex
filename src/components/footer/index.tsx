@@ -47,7 +47,7 @@ const FooterStyled = styled.div`
     font-size: 22px;
     font-weight: bold;
     span {
-      color: #ef5350;
+      color: #03970c;
     }
   }
 `;

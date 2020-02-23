@@ -43,7 +43,7 @@ export const Header = styled.header`
 export const ModalStyled = styled(Modal)`
   &&& {
     .ant-modal-content {
-      background: #ef5350;
+      background: #03970c;
       padding: 24px 20px;
       border-radius: 20px;
       .ant-modal-body {

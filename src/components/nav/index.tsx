@@ -10,7 +10,7 @@ export const HeroTitle = styled.h1`
   font-size: 44px;
   margin: 0;
   span {
-    color: #ef5350;
+    color: #03970c;
   }
 `;
 
