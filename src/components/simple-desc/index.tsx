@@ -20,7 +20,8 @@ type Props = {
 
 export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
   const { bookmarks, handleAdd, handleDelete } = useContext(StateContext);
-  
+  const isBookarked = Object.keys(bookmarks).length && !!bookmarks[item.id]
+
   const handleClick = (toggle) => {
     if (!toggle) {
       handleAdd({[item.id]: item});
@@ -41,7 +42,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
           </div>
           <Flex style={{ alignItems: "center" }}>
             <div style={{ marginRight: 14 }}>
-              <ButtonBookmark toggle={!!bookmarks[item.id]} onClick={(toggle, e) => handleClick(toggle, e)} />
+              <ButtonBookmark toggle={isBookarked} onClick={(toggle, e) => handleClick(toggle, e)} />
             </div>
             {type !== "detail" && (
               <Link to={`/detail/${item?.name.toLowerCase()}`}>
