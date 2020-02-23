@@ -19,7 +19,7 @@ type Props = {
 const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
   return (
     <PokemonItemStyled onClick={onClick}>
-      <Row>
+      <Row gutter={10}>
         <Col sm={8} style={{ width: 160, textAlign: "center" }}>
           <Img fixed={item.imageFile.childImageSharp.fixed} alt={item.name} />
         </Col>

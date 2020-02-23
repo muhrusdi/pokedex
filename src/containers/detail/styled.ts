@@ -6,12 +6,19 @@ export const Hero = styled.div`
   border-radius: 20px;
 `;
 
-export const InformationStyled = styled.div`
-  margin-top: 30px;
-  padding: 0 20px;
+export const Section = styled.div`
   h3 {
     font-size: 22px;
     font-weight: bold;
+  }
+  margin-top: 30px;
+  padding: 0 20px;
+`;
+
+export const InformationStyled = styled.div`
+  margin-top: 20px;
+  h4 {
+    font-size: 18px;
   }
   ul {
     list-style: none;
@@ -37,10 +44,8 @@ export const EvolutionStyled = styled.div`
 export const EvoItem = styled.div`
   padding: 10px;
   border-radius: 10px;
+  height: 200px;
   border: 1px solid #ddd;
-  img {
-    width: 100%;
-  }
 `;
 
 export const EvoItemDesc = styled.div`

@@ -67,25 +67,30 @@ exports.createPages = async ({ actions: { createPage }, graphql }) => {
   //     context: { pokemon }
   //   });
   // });
-  // const { data } = await graphql(`
-  //   query {
-  //     pokemon {
-  //       pokemons(first: 20) {
-  //         id
-  //         name
-  //         types
-  //         number
-  //         image
-  //       }
-  //     }
-  //   }
-  // `);
-  // console.log("00000", data);
-  // createPage({
-  //   path: "/",
-  //   component: require.resolve(`./src/containers/home/index.tsx`),
-  //   context: { pokemons: data }
-  // });
+  const { data } = await graphql(`
+    query {
+      pokemon {
+        pokemons(first: 20) {
+          id
+          name
+        }
+      }
+    }
+  `);
+  const pokemons = data.pokemon.pokemons;
+  // you'll call `createPage` for each result
+  pokemons.forEach(item => {
+    createPage({
+      // This is the slug you created before
+      // (or `node.frontmatter.slug`)
+      path: `/detail/${item.name.toLowerCase()}`,
+      // This component will wrap our MDX content
+      component: require.resolve(`./src/containers/detail/index.tsx`),
+      // You can use the values in this context in
+      // our page layout component
+      context: { id: item.id }
+    });
+  });
 };
 
 exports.createResolvers = ({
@@ -102,7 +107,6 @@ exports.createResolvers = ({
       imageFile: {
         type: `File`,
         resolve(source, args, context, info) {
-          console.log("---", source.name, source);
           return createRemoteFileNode({
             url: `https://img.pokemondb.net/artwork/${source.name.toLowerCase()}.jpg`,
             store,

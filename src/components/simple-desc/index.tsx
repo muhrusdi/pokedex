@@ -25,9 +25,9 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => (
     <ModalContent>
       <Flex>
         <div>
-          <h2>{item.name}</h2>
+          <h2>{item?.name}</h2>
           <div>
-            <Types data={item.types} />
+            <Types data={item?.types} />
           </div>
         </div>
         <Flex style={{ alignItems: "center" }}>
@@ -47,7 +47,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => (
             </svg>
           </div>
           {type !== "detail" && (
-            <Link to={`/detail/${item.name.toLowerCase()}`}>
+            <Link to={`/detail/${item?.name.toLowerCase()}`}>
               <SeeDetail>See Details</SeeDetail>
             </Link>
           )}
@@ -64,7 +64,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => (
                       <span>Species</span>
                     </Col>
                     <Col sm={12}>
-                      <span>{item.classification}</span>
+                      <span>{item?.classification}</span>
                     </Col>
                   </Row>
                 </li>
@@ -75,7 +75,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => (
                     </Col>
                     <Col sm={12}>
                       <span>
-                        {item.height.minimum} - {item.height.maximum}
+                        {item?.height.minimum} - {item?.height.maximum}
                       </span>
                     </Col>
                   </Row>
@@ -88,7 +88,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => (
                     <Col sm={12}>
                       <span>
                         <span>
-                          {item.weight.minimum} - {item.weight.maximum}
+                          {item?.weight.minimum} - {item?.weight.maximum}
                         </span>
                       </span>
                     </Col>
@@ -104,8 +104,8 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => (
                 alt=""
               /> */}
               <Img
-                fluid={item.imageFile.childImageSharp.fluid}
-                alt={item.name}
+                fluid={item?.imageFile.childImageSharp.fluid}
+                alt={item?.name}
               />
             </div>
           </Col>

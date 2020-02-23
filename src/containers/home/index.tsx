@@ -58,7 +58,7 @@ const Home: React.FC<Props> = props => {
     window.history.pushState(
       { page: "another" },
       "another page",
-      "/detail/pokemon"
+      `/detail/${data.pokemon.pokemons[index].name.toLowerCase()}`
     );
   };
 
