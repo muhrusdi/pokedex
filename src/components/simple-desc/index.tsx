@@ -101,7 +101,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
                       </Col>
                       <Col sm={12}>
                         <span>
-                          {item.height} m
+                          {item?.height} m
                         </span>
                       </Col>
                     </Row>
@@ -114,7 +114,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
                       <Col sm={12}>
                         <span>
                           <span>
-                            {item.weight} Kg
+                            {item?.weight} Kg
                           </span>
                         </span>
                       </Col>
