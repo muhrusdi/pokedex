@@ -21,7 +21,7 @@ type Props = {
 
 export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
   const { bookmarks, handleAdd, handleDelete } = useContext(StateContext);
-  const [dataToggle, setDataToggle] = useState(bookmarks && !!bookmarks[item.id]);
+  const [dataToggle, setDataToggle] = useState(bookmarks && !!bookmarks[item?.id]);
   const [name, setName] = useState("");
   const [visible, setVisible] = useState(false);
 
@@ -30,16 +30,16 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
   }
 
   const handleSave = () => {
-    const newArr = item.species.names;
-    newArr[2].name = name ? name : item.species.names[2].name
+    const newArr = item?.species.names;
+    newArr[2].name = name ? name : item?.species.names[2].name
     const newObj = {
       ...item,
       species: {
-        ...item.species,
+        ...item?.species,
         names: newArr,
       }
     }
-    handleAdd({[item.id]: newObj});
+    handleAdd({[item?.id]: newObj});
     setDataToggle(true);
     setVisible(false);
   }
@@ -53,7 +53,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
     if (!toggle) {
       setVisible(true);
     } else {
-      handleDelete(item.id);
+      handleDelete(item?.id);
       setDataToggle(false);
     }
   }
@@ -155,7 +155,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
               height: 43,
               borderRadius: 10,
             }}
-            defaultValue={item.species.names[2].name}
+            defaultValue={item?.species.names[2].name}
           />
         </ModalEditStyled>
       </ModalContent>
