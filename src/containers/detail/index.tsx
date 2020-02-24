@@ -32,7 +32,7 @@ const Information: React.FC<TrainingProps> = ({ title, item, type }) => {
     <InformationStyled>
       <h4>{title}</h4>
       <ul>
-        {item.map((childItem) => (
+        {item?.map((childItem) => (
             <li>
               <span>{childItem[type].names[2].name}</span>
             </li>
@@ -78,19 +78,19 @@ const Evolution: React.FC<EvelotionType> = ({ title, item }) => {
       <h2>{title}</h2>
       <Row gutter={10}>
         <Col xs={24} sm={8}>
-          <EvolutionItem data={item.chain?.species} />
+          <EvolutionItem data={item?.chain?.species} />
         </Col>
         {
-          item.chain.evolvesTo.length && (
+          item?.chain.evolvesTo.length && (
             <Col xs={24} sm={8}>
-              <EvolutionItem data={item.chain?.evolvesTo[0]?.species} />
+              <EvolutionItem data={item?.chain?.evolvesTo[0]?.species} />
             </Col>
           )
         }
         {
-          item.chain.evolvesTo.length && (
+          item?.chain.evolvesTo.length && (
             <Col xs={24} sm={8}>
-              <EvolutionItem data={item.chain?.evolvesTo[0]?.evolvesTo[0]?.species} />
+              <EvolutionItem data={item?.chain?.evolvesTo[0]?.evolvesTo[0]?.species} />
             </Col>
           )
         }
