@@ -22,26 +22,34 @@ const Home: React.FC<Props> = props => {
     query Pokemon {
       pokemon {
         pokemons(first: 20) {
-          id
-          name
-          types
-          classification
-          height {
-            minimum
-            maximum
-          }
-          weight {
-            minimum
-            maximum
-          }
-          number
-          imageFile {
-            childImageSharp {
-              fixed(height: 100) {
-                ...GatsbyImageSharpFixed
+          totalCount
+          edges {
+            node {
+              id
+              order
+              name
+              species {
+                name
+                names {
+                  name
+                }
               }
-              fluid(maxWidth: 400) {
-                ...GatsbyImageSharpFluid
+              height
+              weight
+              types {
+                type {
+                  name
+                }
+              }
+              imageFile {
+                childImageSharp {
+                  fixed(height: 100) {
+                    ...GatsbyImageSharpFixed
+                  }
+                  fluid(maxWidth: 400) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
               }
             }
           }
@@ -65,7 +73,7 @@ const Home: React.FC<Props> = props => {
       window.history.pushState(
         { page: "another" },
         "another page",
-        `/detail/${data.pokemon.pokemons[index].name.toLowerCase()}`
+        `/detail/${data.pokemon.pokemons.edges[index].node.name}`
       );
     }
   };
@@ -75,16 +83,23 @@ const Home: React.FC<Props> = props => {
     window.history.pushState({ page: "another" }, "another page", "/");
   };
 
+  console.log("--", data.pokemon.pokemons.edges[currentPokemon]);
+
   return (
     <Layout>
       <Container type="sm">
         <div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <span>
+              Total <b>{data.pokemon.pokemons.totalCount}</b>
+            </span>
+          </div>
           <ListStyled>
-            {data.pokemon.pokemons.map((item, i) => (
+            {data.pokemon.pokemons.edges.map(({ node }, i) => (
               <li>
                 <PokemonItem
-                  item={item}
-                  onClick={(toggle, e) => handleClick(toggle, i, item, e)}
+                  item={node}
+                  onClick={(toggle, e) => handleClick(toggle, i, node, e)}
                 />
               </li>
             ))}
@@ -92,7 +107,7 @@ const Home: React.FC<Props> = props => {
         </div>
       </Container>
       <ModalStyled footer={null} onCancel={handleCancel} visible={visible}>
-        <SimpleDesc item={data.pokemon.pokemons[currentPokemon]} />
+        <SimpleDesc item={data.pokemon.pokemons.edges[currentPokemon]?.node} />
       </ModalStyled>
     </Layout>
   );

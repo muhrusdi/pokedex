@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Row, Col } from "antd";
+import React, { useContext, useState } from "react";
+import { Row, Col, Modal, Input } from "antd";
 import { Link } from "gatsby";
 import { StateContext } from "contexts/state-context";
 import Img from "gatsby-image";
@@ -10,6 +10,7 @@ import {
   ModalContentDesc,
   Flex,
   SeeDetail,
+  ModalEditStyled,
   ModalListDesc
 } from "./styled";
 
@@ -20,13 +21,40 @@ type Props = {
 
 export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
   const { bookmarks, handleAdd, handleDelete } = useContext(StateContext);
-  const isBookarked = Object.keys(bookmarks || {}).length && !!bookmarks[item.id]
+  const [dataToggle, setDataToggle] = useState(bookmarks && !!bookmarks[item.id]);
+  const [name, setName] = useState("");
+  const [visible, setVisible] = useState(false);
+
+  const handleChangeInput = e => {
+    setName(e.target.value);
+  }
+
+  const handleSave = () => {
+    const newArr = item.species.names;
+    newArr[2].name = name ? name : item.species.names[2].name
+    const newObj = {
+      ...item,
+      species: {
+        ...item.species,
+        names: newArr,
+      }
+    }
+    handleAdd({[item.id]: newObj});
+    setDataToggle(true);
+    setVisible(false);
+  }
+
+  const handleCancel = () => {
+    setVisible(false);
+    setDataToggle(false);
+  }
 
   const handleClick = (toggle) => {
     if (!toggle) {
-      handleAdd({[item.id]: item});
+      setVisible(true);
     } else {
       handleDelete(item.id);
+      setDataToggle(false);
     }
   }
 
@@ -35,17 +63,17 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
       <ModalContent>
         <Flex>
           <div>
-            <h2>{item?.name}</h2>
+            <h2>{item?.species?.names[2].name}</h2>
             <div>
               <Types data={item?.types} />
             </div>
           </div>
           <Flex style={{ alignItems: "center" }}>
             <div style={{ marginRight: 14 }}>
-              <ButtonBookmark toggle={isBookarked} onClick={(toggle, e) => handleClick(toggle, e)} />
+              <ButtonBookmark toggle={dataToggle} onClick={(toggle, e) => handleClick(toggle, e)} />
             </div>
             {type !== "detail" && (
-              <Link to={`/detail/${item?.name.toLowerCase()}`}>
+              <Link to={`/detail/${item?.name}`}>
                 <SeeDetail>See Details</SeeDetail>
               </Link>
             )}
@@ -62,7 +90,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
                         <span>Species</span>
                       </Col>
                       <Col sm={12}>
-                        <span>{item?.classification}</span>
+                        <span style={{textTransform: "capitalize"}}>{item?.species.name}</span>
                       </Col>
                     </Row>
                   </li>
@@ -73,7 +101,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
                       </Col>
                       <Col sm={12}>
                         <span>
-                          {item?.height.minimum} - {item?.height.maximum}
+                          {item.height} m
                         </span>
                       </Col>
                     </Row>
@@ -86,7 +114,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
                       <Col sm={12}>
                         <span>
                           <span>
-                            {item?.weight.minimum} - {item?.weight.maximum}
+                            {item.weight} Kg
                           </span>
                         </span>
                       </Col>
@@ -109,6 +137,27 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
             </Col>
           </Row>
         </ModalContentDesc>
+
+        <ModalEditStyled
+          title={null}
+          closable={false}
+          destroyOnClose
+          visible={visible}
+          onOk={handleSave}
+          okText="Save to My Pokemon"
+          onCancel={handleCancel}
+        >
+          <h4>Name</h4>
+          <Input
+            placeholder="Enter nickname"
+            onChange={handleChangeInput}
+            style={{
+              height: 43,
+              borderRadius: 10,
+            }}
+            defaultValue={item.species.names[2].name}
+          />
+        </ModalEditStyled>
       </ModalContent>
     </div>
   );

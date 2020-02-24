@@ -14,6 +14,9 @@ export const randomColor = [
   "#6bb5e7",
   "#e1677d"
 ];
-// `#${Array.from(Array(10), () =>
-//   Math.floor(Math.random() * 16777215).toString(16)
-// )}`;
+
+export const randoColorAdvanced = length => {
+  return `#${Array.from(Array(length), () =>
+    Math.floor(Math.random() * 16777215).toString(16)
+  )}`;
+};

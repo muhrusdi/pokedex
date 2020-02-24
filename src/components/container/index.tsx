@@ -37,6 +37,11 @@ const Container = styled.div(
           maxWidth: 576
         };
       }
+      case "xs": {
+        return {
+          maxWidth: 374
+        };
+      }
       default:
         return {
           maxWidth: "initial"

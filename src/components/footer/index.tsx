@@ -39,7 +39,6 @@ export const Header = styled.header`
 
 const FooterStyled = styled.div`
   padding: 20px 0;
-  border-top: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   align-items: center;

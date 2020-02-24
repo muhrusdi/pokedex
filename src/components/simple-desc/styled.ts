@@ -113,3 +113,11 @@ export const ButtonClose = styled.button`
   height: 40px;
   line-height: 1;
 `;
+
+export const ModalEditStyled = styled(Modal)`
+  &&& {
+    .ant-modal-content {
+      border-radius: 20px;
+    }
+  }
+`;

@@ -17,12 +17,12 @@ const ButtonBookmark = ({ toggle = false, onClick }) => {
   }, [toggle]);
 
   const handleClick = e => {
-    setToggle(t => !t);
+    // setToggle(t => !t);
     onClick(dataToggle, e);
   };
 
   return (
-    <ButtonBookmarkStyled onClick={handleClick}>
+    <ButtonBookmarkStyled role="button" onClick={handleClick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

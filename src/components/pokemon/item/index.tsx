@@ -13,6 +13,7 @@ type Props = {
 
 const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
   const { bookmarks } = useContext(StateContext);
+  console.log(item);
   return (
     <PokemonItemStyled onClick={e => onClick(null, e)}>
       <Row gutter={10}>
@@ -22,8 +23,8 @@ const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
         <Col sm={16}>
           <div>
             <Title>
-              <h2>{item.name}</h2>
-              <span>#{item.number}</span>
+              <h2>{item.species.names[2].name}</h2>
+              <span>#{item.order}</span>
             </Title>
             <List>
               <Types data={item.types} />

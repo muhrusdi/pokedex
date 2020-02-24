@@ -1,18 +1,17 @@
-import React from "react";
+// import React from "react";
 
-import { render } from "@testing-library/react";
+// import { render } from "@testing-library/react";
 
-// You have to write data-testid
+// // You have to write data-testid
 
-const Title = () => <h1 data-testid="hero-title">Gatsby is awesome!</h1>;
+// const Title = () => <h1 data-testid="hero-title">Gatsby is awesome!</h1>;
 
+// test("Displays the correct title", () => {
+//   const { getByTestId } = render(<Title />);
 
-test("Displays the correct title", () => {
-  const { getByTestId } = render(<Title />);
+//   // Assertion
 
-  // Assertion
+//   // expect(getByTestId("hero-title").textContent).toBe("Gatsby is awesome!");
 
-  expect(getByTestId("hero-title").textContent).toBe("Gatsby is awesome!");
-
-  // --> Test will pass
-});
+//   // --> Test will pass
+// });

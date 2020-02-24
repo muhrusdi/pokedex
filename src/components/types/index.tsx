@@ -16,6 +16,7 @@ export const Type = styled.span`
   background: ${({ color }) => color};
   padding: 4px 8px;
   border-radius: 20px;
+  text-transform: capitalize;
   color: #fff;
 `;
 
@@ -36,7 +37,7 @@ const Types: React.FC<Props> = ({ data }) => (
     {data.length &&
       data.map((item, i) => (
         <li>
-          <Type color={randomColor[i]}>{item}</Type>
+          <Type color={randomColor[i]}>{item.type.name}</Type>
         </li>
       ))}
   </List>

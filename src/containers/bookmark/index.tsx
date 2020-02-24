@@ -18,7 +18,7 @@ const Bookmark: React.FC<Props> = props => {
   const [visible, setVisible] = useState(false);
   const [currentPokemon, setCurrentPokemon] = useState(null);
   const { bookmarks, handleAdd, handleDelete } = useContext(StateContext);
-
+  console.log("00", bookmarks);
   const handleClick = (toggle, index, item, e) => {
     e.stopPropagation();
     if (e.currentTarget.localName === "button") {

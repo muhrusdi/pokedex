@@ -49,7 +49,7 @@ export const ListContent = () => {
       </li>
       <li>
         <Link to="/bookmark">
-          <span>My Bookmark</span>
+          <span>My Pokemon</span>
           <span>
             <Badge
               count={Object.keys(bookmarks || {}).length}

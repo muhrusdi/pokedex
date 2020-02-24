@@ -21,7 +21,7 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "pokemon",
         // Url to query from
-        url: "https://graphql-pokemon.now.sh"
+        url: "https://pokegraphql.herokuapp.com/graphql"
       }
     },
     "gatsby-transformer-sharp",

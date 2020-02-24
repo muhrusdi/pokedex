@@ -24,6 +24,8 @@ export const InformationStyled = styled.div`
     list-style: none;
     padding: 0;
     li {
+      display: inline-block;
+      margin-right: 8px;
       padding: 10px;
       border: 1px solid #ddd;
       margin-top: 10px;
@@ -50,4 +52,5 @@ export const EvoItem = styled.div`
 
 export const EvoItemDesc = styled.div`
   margin-top: 10px;
+  text-transform: capitalize;
 `;
