@@ -28,7 +28,6 @@ type TrainingProps = {
 };
 
 const Information: React.FC<TrainingProps> = ({ title, item, type }) => {
-  console.log(item)
   return (
     <InformationStyled>
       <h4>{title}</h4>
@@ -101,7 +100,8 @@ const Evolution: React.FC<EvelotionType> = ({ title, item }) => {
 };
 
 const Detail: React.FC<Props> = props => {
-  const { pokemon, evolutionChain } = props.data?.pokemon;
+  const pokemon = props.data?.pokemon?.pokemon;
+  const evolutionChain = props.data?.pokemon?.evolutionChain;
 
   return (
     <Layout>
