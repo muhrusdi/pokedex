@@ -74,7 +74,6 @@ interface EvelotionType {
 }
 
 const Evolution: React.FC<EvelotionType> = ({ title, item }) => {
-  console.log("0000", item)
   return (
     <EvolutionStyled>
       <h2>{title}</h2>
