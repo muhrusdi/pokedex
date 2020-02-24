@@ -42,6 +42,10 @@ const FooterStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 576px) {
+    display: block;
+    text-align: center;
+  }
   h4 {
     font-size: 22px;
     font-weight: bold;

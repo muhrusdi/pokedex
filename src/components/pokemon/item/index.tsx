@@ -17,10 +17,10 @@ const PokemonItem: React.FC<Props> = ({ onClick, item }) => {
   return (
     <PokemonItemStyled onClick={e => onClick(null, e)}>
       <Row gutter={10}>
-        <Col sm={8} style={{ width: 160, textAlign: "center" }}>
+        <Col xs={10} sm={8} style={{ width: 160, textAlign: "center" }}>
           <Img fixed={item.imageFile.childImageSharp.fixed} alt={item.name} />
         </Col>
-        <Col sm={16}>
+        <Col xs={14} sm={16}>
           <div>
             <Title>
               <h2>{item.species.names[2].name}</h2>

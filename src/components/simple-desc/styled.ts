@@ -99,6 +99,11 @@ export const SeeDetail = styled.button`
   cursor: pointer;
   background: transparent;
   color: #fff;
+  @media screen and (max-width: 576px) {
+    span {
+      display: none;
+    }
+  }
 `;
 
 export const ButtonClose = styled.button`

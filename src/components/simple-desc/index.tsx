@@ -74,7 +74,7 @@ export const SimpleDesc: React.FC<Props> = ({ type, item }) => {
             </div>
             {type !== "detail" && (
               <Link to={`/detail/${item?.name}`}>
-                <SeeDetail>See Details</SeeDetail>
+                <SeeDetail><span>See </span>Details</SeeDetail>
               </Link>
             )}
           </Flex>
