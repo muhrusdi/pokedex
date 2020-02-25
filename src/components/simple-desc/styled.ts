@@ -96,6 +96,7 @@ export const SeeDetail = styled.button`
   height: 42px;
   border-radius: 24px;
   border: 1px solid #fff;
+  outline: none;
   cursor: pointer;
   background: transparent;
   color: #fff;

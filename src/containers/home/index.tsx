@@ -63,7 +63,6 @@ const Home: React.FC<Props> = props => {
     if (e.currentTarget.localName === "button") {
       if (!toggle) {
         handleAdd({ [item.id]: item });
-        console.log(bookmarks);
       } else {
         handleDelete(item.id);
       }
@@ -82,8 +81,6 @@ const Home: React.FC<Props> = props => {
     setVisible(false);
     window.history.pushState({ page: "another" }, "another page", "/");
   };
-
-  console.log("--", data.pokemon.pokemons.edges[currentPokemon]);
 
   return (
     <Layout>
@@ -106,7 +103,7 @@ const Home: React.FC<Props> = props => {
           </ListStyled>
         </div>
       </Container>
-      <ModalStyled footer={null} onCancel={handleCancel} visible={visible}>
+      <ModalStyled destroyOnClose footer={null} onCancel={handleCancel} visible={visible}>
         <SimpleDesc item={data.pokemon.pokemons.edges[currentPokemon]?.node} />
       </ModalStyled>
     </Layout>

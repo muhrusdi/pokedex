@@ -6,7 +6,6 @@ import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import SimpleDesc from "components/simple-desc";
 import Layout from "../layouts";
-import { randoColorAdvanced } from "utils";
 import {
   Hero,
   InformationStyled,
